@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-08" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Links and Images</title>
+  </head>
+  <body>
+    <h1>Homepage</h1>
+    <!-- Anchor Tag -->
+    <a
+      href="https://www.theodinproject.com/about"
+      target="_blank"
+      rel="noopener noreferrer"
+      >About The Odin Project</a
+    >
+    <a href="./pages/about.html">About</a>
+
+    <!-- Image Tag -->
+    <img src="./images/dog.jpg" alt="a really cute big black eyed dog." height="400" width="300">
+  </body>
+</html>
+<!-- 
+    ALWAYS PAIR "target=_blank" WITH "rel=noopener noreferrer".
+    No Opener: Prevents new tabs from accessing original tab using JS. Prevents phishing attacks and tabnabbing.
+    No Referrer: Prevents new tab from knowing where the user came from, which also prevents JS from accessing original page.
+ -->
+<!-- 
+    Absolute Link: Always contains scheme and domain-> scheme://domain/path
+    Ex: "https://www.theodinproject.com/about"
+
+    Relative Link: Since another page will be on the same site. Domain will remain the same, thats why we only pass /path to the file.
+    Ex: "./pages/about.html"
+
+ -->
