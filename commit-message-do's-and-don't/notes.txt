@@ -18,3 +18,15 @@ This message does not give a clear picture of the bug.
 Example of a good commit :- 
 subject: add missing alt attribute to image
 body: Screen reader won't read img to users with disabilities without this information.
+
+
+
+The Seven Rules of Great Commit Message:
+    1. Seperate subject from body using a blank line
+    2. Limit the subject line to 50 characters
+    3. CAPITALIZE THE SUBJECT line
+    4. Do Not end the subject line with a period (.)
+    5. Use the imperative mood in the subject line
+    6. Wrap the body at 72 characters
+    7.Use the body to explain what and why vs. how
+
