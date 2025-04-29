@@ -32,8 +32,9 @@ There are three places where a rule can be defined:
 There are five levels of selectors:
 1. inline
     > A attribute used for styling `style="declaration;"`  
-    > [!WARNING]  
-    > Not recommended to use style this way
+    > Since this type of style is read after external/ internal css. Thus layering apply here.
+> [!WARNING]  
+> Not recommended to use style this way
 2. layer
     > When importance is a tie, layers decide which style to apply
 3. id
