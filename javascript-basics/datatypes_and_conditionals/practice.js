@@ -1,0 +1,20 @@
+let text = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+let text1 = "      Hello World!      ";
+let text2 = "4839";
+
+console.log(text.length);
+console.log(text.charAt(0));
+console.log(text.charCodeAt(0));
+console.log(text.at(0));
+console.log(text[0]);
+console.log(text.slice(-12, -4));
+console.log(text.substring(4, 16));
+console.log(text.toUpperCase());
+console.log(text.toLowerCase());
+console.log(text.split(""));
+console.log(text1.trim());
+console.log(text1.trimStart());
+console.log(text1.trimEnd());
+console.log(text1.repeat(2));
+console.log(text1.replace("World", "Girl"));
+console.log(text2.padStart(6, "x").padEnd(7, "x"));
