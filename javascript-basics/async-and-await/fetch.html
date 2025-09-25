@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form>
+      <input type="text" name="search" id="search" />
+      <button type="submit">Search</button>
+    </form>
+    <img src="#" />
+    <script>
+      const DOMCache = (() => {
+        return {
+          img: document.querySelector("img"),
+          input: document.querySelector("#search"),
+          btn: document.querySelector("button"),
+          form: document.querySelector("form"),
+        };
+      })();
+
+      async function getGIF(e) {
+        e.preventDefault();
+        try {
+          const response = await fetch(getAPIUrl(DOMCache.input.value));
+          const gifData = await response.json();
+          DOMCache.img.src = gifData.data.images.original.url;
+        } catch (error) {
+          console.error(error);
+        }
+      }
+
+      function getAPIUrl(text) {
+        return `https://api.giphy.com/v1/gifs/translate?api_key=ZWOlvQsg5pnDhFUEFcHTR8jRBmzdg5BZ&s=${text}`;
+      }
+
+      DOMCache.form.addEventListener("submit", getGIF);
+    </script>
+  </body>
+</html>
