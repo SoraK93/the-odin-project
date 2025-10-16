@@ -1,6 +1,6 @@
-import * as http from "http";
-import * as fs from "fs";
-import lodash from "lodash";
+const http = require("http");
+const fs = require("fs");
+const lodash = require("lodash");
 
 // creating a server
 const server = http.createServer((req, res) => {
