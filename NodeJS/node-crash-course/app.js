@@ -2,14 +2,14 @@ const express = require("express");
 const fs = require("fs");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
-const Blog = require("./public/models/blog.js");
+const Blog = require("./models/blog.js");
 
 // express app
 const app = express();
 
 // connection to mongodb
 const dbURI =
-  "mongodb+srv://:@cluster0.tedzxy3.mongodb.net/note-tuts?retryWrites=true&w=majority&appName=Cluster0";
+  "mongodb+srv://@cluster0.tedzxy3.mongodb.net/note-tuts?retryWrites=true&w=majority&appName=Cluster0";
 
 mongoose
   .connect(dbURI)
@@ -28,33 +28,54 @@ app.use(morgan("dev"));
 app.use(express.static("public"));
 
 // routing - get request
-app.get("/", (req, res) => {
-  res.redirect("/blogs");
-});
-
 app.get("/about", (req, res) => {
   res.render("about", { title: "About" });
-});
-
-app.get("/blogs", (req, res) => {
-  Blog.find().sort({ createdAt: -1 })
-    .then((result) => {
-      res.render("index", { title: "All Blogs", blogs: result})
-    })
-    .catch((err) => console.log(err))
-  // Older way of liking html
-  // res.sendFile("./views/index.html", { root: __dirname });
-  // res.send("<p>Homepage</p>");
 });
 
 app.get("/blog/create", (req, res) => {
   res.render("create", { title: "Create a new blog" });
 });
 
+// routing - get data from db and render it
+app.get("/blogs", (req, res) => {
+  Blog.find().sort({ createdAt: -1 })
+    .then((result) => {
+      res.render("index", { title: "All Blogs", blogs: result})
+    })
+    .catch((err) => console.log(err))
+});
+
 // redirects
 app.get("/about-us", (req, res) => {
   res.redirect("/about");
 });
+
+app.get("/", (req, res) => {
+  res.redirect("/blogs");
+});
+
+// 404 page
+app.use((req, res) => {
+  // this .use() executes for every URL, thus none of the code below will excute
+  // !!!!ALWAYS KEEP THIS AT THE BOTTOM OF THE SCRIPT!!!!
+  res.status(404).render("404", { title: "Not Found" });
+});
+
+// const blogs = [
+//   {
+//     title: "Yoshi finds eggs",
+//     snippet: "Lorem ipsum dolor sit amet consectetur.",
+//   },
+//   {
+//     title: "Mario find stars",
+//     snippet: "Lorem ipsum dolor sit amet consectetur.",
+//   },
+//   {
+//     title: "How to defeat bowser",
+//     snippet: "Lorem ipsum dolor sit amet consectetur.",
+//   },
+// ];
+// res.render("index", { title: "Home", blogs });
 
 // // mongoose and mongo sandbox routes
 // // adds data to db
@@ -84,27 +105,3 @@ app.get("/about-us", (req, res) => {
 //     .then((result) => res.send(result))
 //     .catch((err) => console.log(err))
 // })
-
-// 404 page
-app.use((req, res) => {
-  // this .use() executes for every URL, thus none of the code below will excute
-  // !!!!ALWAYS KEEP THIS AT THE BOTTOM OF THE SCRIPT!!!!
-  res.status(404).render("404", { title: "Not Found" });
-});
-
-
-// const blogs = [
-//   {
-//     title: "Yoshi finds eggs",
-//     snippet: "Lorem ipsum dolor sit amet consectetur.",
-//   },
-//   {
-//     title: "Mario find stars",
-//     snippet: "Lorem ipsum dolor sit amet consectetur.",
-//   },
-//   {
-//     title: "How to defeat bowser",
-//     snippet: "Lorem ipsum dolor sit amet consectetur.",
-//   },
-// ];
-// res.render("index", { title: "Home", blogs });
