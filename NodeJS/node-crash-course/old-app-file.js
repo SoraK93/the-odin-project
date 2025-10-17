@@ -62,3 +62,35 @@ server.listen(3000, "localhost", () => {
   // callback runs when we start listening
   console.log("listening for requests on port 3000.");
 });
+
+
+// related to main app.js file. contains alternate code for getting data from mongodb
+
+// // mongoose and mongo sandbox routes
+// // adds data to db
+// app.get("/add-blog", (req, res) => {
+//   const blog = new Blog({
+//     title: "new blog 2",
+//     snippet: "about my new blog",
+//     body: "more about my new blog",
+//   });
+
+//   blog
+//     .save()
+//     .then((result) => res.send(result))
+//     .catch((err) => console.log(err));
+// });
+
+// // get all data from db
+// app.get("/all-blogs", (req, res) => {
+//   Blog.find()
+//     .then((result) => res.send(result))
+//     .catch((err) => console.log(err))
+// })
+
+// // get specific data from db
+// app.get("/single-blog", (req, res) => {
+//   Blog.findById("68f1ab13c50696077db3b0ce")
+//     .then((result) => res.send(result))
+//     .catch((err) => console.log(err))
+// })
